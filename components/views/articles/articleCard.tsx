@@ -21,7 +21,7 @@ export default function ArticleCard({
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/articles/preview?id=${url}`)}
+      onClick={() => router.push(`/articles/preview/${url}`)}
       className="max-w-sm rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer"
     >
       <Image

@@ -48,7 +48,7 @@ export default function PreviewPage({ articleData }: any) {
   );
   const [otherArticle, serOtherArticle] = useState<any>();
   const pathname = usePathname();
-  const id = pathname.split("/")[2];
+  const id = pathname.split("/")[3];
   const getDataArticle = async () => {
     try {
       const data = await getArticleByIdApi(id || "");
