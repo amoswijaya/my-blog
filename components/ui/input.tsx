@@ -3,7 +3,12 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 
-interface LabeledInputProps extends React.ComponentProps<"input"> {
+type InputPropsWithoutSizeAndPrefix = Omit<
+  React.ComponentProps<"input">,
+  "size" | "prefix"
+>;
+
+interface LabeledInputProps extends InputPropsWithoutSizeAndPrefix {
   label?: string;
   error?: string;
   size?: "sm" | "md" | "lg" | "xl";
