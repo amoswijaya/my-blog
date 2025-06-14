@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import EmptyState from "./emptyState";
 
 interface TableDataProps {
   caption?: string;
@@ -16,31 +17,34 @@ interface TableDataProps {
 
 export function TableData({ caption, columns, data }: TableDataProps) {
   return (
-    <Table>
-      {caption && <TableCaption>{caption}</TableCaption>}
-      <TableHeader>
-        <TableRow>
-          {columns.map((col, i) => (
-            <TableHead key={i} className={col.className}>
-              {col.label}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody className="flex-1">
-        {data?.map((row, rowIndex) => (
-          <TableRow key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <TableCell
-                key={cellIndex}
-                className={`${columns[cellIndex]?.className} `}
-              >
-                {cell}
-              </TableCell>
+    <>
+      <Table>
+        {caption && <TableCaption>{caption}</TableCaption>}
+        <TableHeader>
+          <TableRow>
+            {columns.map((col, i) => (
+              <TableHead key={i} className={col.className}>
+                {col.label}
+              </TableHead>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody className="flex-1 relative">
+          {data?.map((row, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {row.map((cell, cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  className={`${columns[cellIndex]?.className} `}
+                >
+                  {cell}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {!data?.length && <EmptyState />}
+    </>
   );
 }
