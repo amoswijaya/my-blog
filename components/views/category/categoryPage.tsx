@@ -131,11 +131,7 @@ export default function Category() {
         <DialogTrigger>
           <Tooltip>
             <TooltipTrigger>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => console.log("Edit category", category.id)}
-              >
+              <Button variant="ghost" size="icon">
                 <Pencil />
               </Button>
             </TooltipTrigger>

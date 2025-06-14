@@ -317,7 +317,6 @@ export default function ArticleForm({ isNew = false }: { isNew?: boolean }) {
                 <Button
                   variant="secondary"
                   onClick={() => {
-                    console.log(form.getValues());
                     setIsPreview(true);
                   }}
                   className="mt-4"

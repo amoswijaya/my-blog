@@ -24,10 +24,6 @@ export default function LayoutProvider({
     fetchRole();
   }, []);
 
-  useEffect(() => {
-    console.log(role);
-  }, [role]);
-
   if (loading) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">

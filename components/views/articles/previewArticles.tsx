@@ -77,10 +77,6 @@ export default function PreviewPage({ articleData }: any) {
     getDataArticle();
   }, []);
 
-  useEffect(() => {
-    console.log(articleData, "inih dalem cok");
-  }, [articleData]);
-
   if (!articleDetail) {
     return <ArticleDetailSkeleton />;
   }
