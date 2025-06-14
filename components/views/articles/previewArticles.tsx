@@ -77,6 +77,10 @@ export default function PreviewPage({ articleData }: any) {
     getDataArticle();
   }, []);
 
+  useEffect(() => {
+    console.log(articleData, "inih dalem cok");
+  }, [articleData]);
+
   if (!articleDetail) {
     return <ArticleDetailSkeleton />;
   }
@@ -96,8 +100,8 @@ export default function PreviewPage({ articleData }: any) {
         </header>
         <div className="w-full aspect-video rounded-lg overflow-hidden relative mb-8 shadow-lg">
           <Image
-            src={articleDetail?.imageUrl}
-            alt={articleDetail?.title || ""}
+            src={articleDetail?.imageUrl || articleData?.imageUrl}
+            alt={articleDetail?.title || articleData?.imageUrl}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -106,7 +110,9 @@ export default function PreviewPage({ articleData }: any) {
         </div>
         <div
           className="prose prose-lg max-w-none prose-indigo"
-          dangerouslySetInnerHTML={{ __html: articleDetail?.content || "" }}
+          dangerouslySetInnerHTML={{
+            __html: articleDetail?.content || articleData?.content,
+          }}
         />
         {!articleData && (
           <div className="py-2">
