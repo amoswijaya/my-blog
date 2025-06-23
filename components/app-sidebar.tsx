@@ -12,6 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { removeProfile, removeRole, removeToken } from "@/lib/auth";
+import Link from "next/link";
 
 // Menu items.
 const items = [
@@ -34,7 +35,6 @@ const items = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <Sidebar>
@@ -49,18 +49,20 @@ export function AppSidebar() {
                 if (item.title === "Logout") {
                   return (
                     <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        size="lg"
+                      <Link
+                        href="/login"
                         onClick={() => {
                           removeToken();
                           removeRole();
                           removeProfile();
-                          router.push("/login");
                         }}
+                        className=" cursor-pointer"
                       >
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </SidebarMenuButton>
+                        <SidebarMenuButton size="lg">
+                          <item.icon />
+                          <span>{item.title}</span>
+                        </SidebarMenuButton>
+                      </Link>
                     </SidebarMenuItem>
                   );
                 }
@@ -72,10 +74,10 @@ export function AppSidebar() {
                       size="lg"
                       asChild
                     >
-                      <a href={item.url}>
+                      <Link href={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );

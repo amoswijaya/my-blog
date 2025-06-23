@@ -113,7 +113,7 @@ export default function ArticlesAdmin() {
       <Button
         size="icon"
         variant="ghost"
-        onClick={() => Router.push(`/articles/preview?id=${article.id}`)}
+        onClick={() => Router.push(`/articles/preview/${article.id}`)}
       >
         <Eye className="w-4 h-4" />
       </Button>
@@ -228,16 +228,16 @@ export default function ArticlesAdmin() {
           <span className=" font-bold">Total Articles : {articles?.total}</span>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between mb-4 border-b pb-4">
-            <div className="flex gap-4">
-              <div className="w-[180px]">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4 border-b pb-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <div className="w-full sm:w-[180px]">
                 <Select
                   value={query.categoryId}
                   onValueChange={(value) =>
                     setQuery({ categoryId: value, page: 1, limit: 10 })
                   }
                 >
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-full">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent className="max-h-[200px] overflow-y-auto">
@@ -256,8 +256,9 @@ export default function ArticlesAdmin() {
                 value={titleArticle}
                 onChange={(e) => setTitleArticle(e.target.value)}
                 placeholder="Search by title.."
-                className="w-[180px]"
+                className="w-full sm:w-[180px]"
               />
+
               {(query.title || query.categoryId) && (
                 <Tooltip>
                   <TooltipTrigger>
@@ -281,14 +282,18 @@ export default function ArticlesAdmin() {
                 </Tooltip>
               )}
             </div>
-            <Button
-              onClick={() => Router.push("/articles/create")}
-              className="bg-blue-600"
-            >
-              <Plus className="mr-2" />
-              Add Articles
-            </Button>
+
+            <div className="w-full md:w-auto">
+              <Button
+                onClick={() => Router.push("/articles/create")}
+                className="w-full md:w-auto bg-blue-600"
+              >
+                <Plus className="mr-2" />
+                Add Articles
+              </Button>
+            </div>
           </div>
+
           {loading ? (
             <TableSkeleton columns={columns} />
           ) : (

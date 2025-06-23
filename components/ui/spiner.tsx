@@ -17,7 +17,7 @@ export function Spinner({ size = "md" }: SpinnerProps) {
   const pixelSize = sizeMap[size];
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4 h-full">
       <Loader2
         width={pixelSize}
         height={pixelSize}

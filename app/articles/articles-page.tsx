@@ -1,4 +1,5 @@
 "use client";
+import { Spinner } from "@/components/ui/spiner";
 import ArticlesAdmin from "@/components/views/articles/articlesPageAdmin";
 import ArticlesUser from "@/components/views/articles/articlesPageUser";
 import { getRole } from "@/lib/auth";
@@ -13,5 +14,13 @@ export default function articlePage() {
     };
     fetchRole();
   }, []);
-  return role === "Admin" ? <ArticlesAdmin /> : <ArticlesUser />;
+  return role === "Admin" ? (
+    <ArticlesAdmin />
+  ) : role === "User" ? (
+    <ArticlesUser />
+  ) : (
+    <div className="h-full">
+      <Spinner size="lg" />
+    </div>
+  );
 }

@@ -214,15 +214,15 @@ export default function Category() {
           </span>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between mb-4 border-b pb-4">
-            <div className="flex gap-4">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4 border-b pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <LabeledInput
                 size="md"
                 prefix={<Search />}
                 value={titleCategory}
                 onChange={(e) => setTitleCategory(e.target.value)}
                 placeholder="Search Category"
-                className="w-[180px]"
+                className="w-full sm:w-[180px]"
               />
               {query.name && (
                 <Tooltip>
@@ -246,9 +246,10 @@ export default function Category() {
                 </Tooltip>
               )}
             </div>
+
             <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger>
-                <Button className="bg-blue-600">
+              <DialogTrigger asChild>
+                <Button className="w-full md:w-auto bg-blue-600">
                   <Plus className="mr-2" />
                   Add Category
                 </Button>
@@ -256,6 +257,7 @@ export default function Category() {
               <FormCategory onChange={handleSubmit} />
             </Dialog>
           </div>
+
           {loading ? (
             <TableSkeleton columns={columns} />
           ) : (

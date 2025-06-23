@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
     ],
   },
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
 
 export default nextConfig;
